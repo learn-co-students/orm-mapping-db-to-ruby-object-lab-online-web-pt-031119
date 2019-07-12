@@ -62,10 +62,11 @@ class Student
       SELECT *
       FROM students
       WHERE grade = 10
-      LIMIT = ?
+      ORDER BY students.id
+      LIMIT ?
     SQL
  
-    DB[:conn].execute(sql).map do |row|
+    DB[:conn].execute(sql, limit).map do |row|
       self.new_from_db(row)
     end
   end 
@@ -75,6 +76,7 @@ class Student
       SELECT *
       FROM students
       WHERE grade = 10
+      ORDERED BY students.id
       LIMIT 1
     SQL
  
